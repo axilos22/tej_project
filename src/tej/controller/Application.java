@@ -21,14 +21,15 @@ public class Application
         null); // no miss handler
         
     RealtimeThread rtPeriodic= new Tache_Compteur(scheduling, releaseParam); 
-             
+    AsyncEvent inputKeyboard = new AsyncEvent();
+    inputKeyboard.addHandler(new Asynchrone_Handler());           
+
     PriorityScheduler boss = PriorityScheduler.instance();
 	Scheduler.setDefaultScheduler(boss);
 
 	rtPeriodic.setScheduler(boss);
 
-	if (boss.isFeasible()) {
-		
+	if (boss.isFeasible()) {		
 		System.out.println("<Application>/ Jeu de taches ordonnancables ...");
 		
 		// Démarrage du thread
@@ -36,10 +37,14 @@ public class Application
 
 	}
     
-    try{
+    try{    	
     	rtPeriodic.join();
     	
  
     }catch(Exception e){}; 
+  }
+  
+  public void keyboardPushed(AsyncEvent ae) {
+	  ae.fire();
   }
 }

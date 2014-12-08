@@ -20,19 +20,11 @@ public class Asynchrone_Handler extends AsyncEventHandler {
 	}
 
 	public void handleAsyncEvent() {
-		InputStreamReader isr;
-		BufferedReader br;
-		try {
-			isr = new InputStreamReader(System.in);
-			br = new BufferedReader(isr);
-			String line = br.readLine();
-			System.out.println("input =" + line);
-		} catch (IOException ioe) {
-		}
+		
 		// Permet la reprise de la tache preemptee (th) par ce AEH
 
 		// Cas missHandler ou OverrunHandler par exemple
 
-		th.schedulePeriodic(); // Let the thread continue
+		//th.schedulePeriodic(); // Let the thread continue
 	}
 }
